@@ -1,0 +1,26 @@
+{
+	"name": "ClickTimeLLM",
+	"description": "It's been one day of filling out my time entries, and that's already too many days.",
+	"version": "1.0",
+	"manifest_version": 3,
+	"action": {
+		"default_popup": "dist/popup.html"
+	},
+	"permissions": ["storage", "webNavigation", "tabs"],
+	"host_permissions": ["https://app.clicktime.com/*"],
+	"background": {
+		"service_worker": "dist/background.js"
+	},
+	"content_scripts": [
+		{
+			"matches": ["https://app.clicktime.com/*"],
+			"js": ["dist/messageBridge.js"]
+		}
+	],
+	"web_accessible_resources": [
+		{
+			"resources": ["dist/injected.js"],
+			"matches": ["https://app.clicktime.com/*"]
+		}
+	]
+}
